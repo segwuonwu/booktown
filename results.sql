@@ -58,4 +58,16 @@ INNER JOIN books b ON e.book_id=b.id
 INNER JOIN customers c ON s.customer_id=c.id                                                                                                            
 ORDER BY s.ship_date;
 
-
+-- Grouping and Counting
+--      Get the COUNT of all books
+SELECT count(*) FROM books;
+--      Get the COUNT of all Locations
+SELECT count(location) FROM subjects;
+--      Get the COUNT of each unique location in the subjects table. Display the count and the location name. (hint: requires GROUP BY).
+SELECT DISTINCT count(location), location FROM subjects GROUP BY location;
+--      List all books. Display the book_id, title, and a count of how many editions each book has. (hint: requires GROUP BY and JOIN)
+SELECT b.id, b.title, count(e.book_id)                                                                                                                  
+FROM books b 
+INNER JOIN editions e 
+    ON b.id=e.book_id                                                                                                               
+GROUP BY b.id;
